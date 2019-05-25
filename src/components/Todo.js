@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Todo = ({ updateTodo, removeTodo, todo }) => {
+const Todo = ({ updateTodo, removeTodo, toggleCompletion, todo }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [task, setTask] = useState(todo.task);
 
@@ -12,6 +12,10 @@ const Todo = ({ updateTodo, removeTodo, todo }) => {
     e.preventDefault();
     updateTodo(todo.id, task);
     setIsEditing(false);
+  };
+
+  const handleToggle = e => {
+    toggleCompletion(todo.id);
   };
 
   let result;
@@ -33,7 +37,12 @@ const Todo = ({ updateTodo, removeTodo, todo }) => {
       <div>
         <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
         <button onClick={handleRemoveTodo}>X</button>
-        <li>{todo.task}</li>
+        <li
+          onClick={handleToggle}
+          className={todo.completed ? "completed" : ""}
+        >
+          {todo.task}
+        </li>
       </div>
     );
   }

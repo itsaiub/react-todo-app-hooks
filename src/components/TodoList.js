@@ -7,7 +7,7 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   const createTodo = newTodo => {
-    setTodos([...todos, { id: uuid(), task: newTodo }]);
+    setTodos([...todos, { id: uuid(), task: newTodo, completed: false }]);
   };
 
   const updateTodo = (id, updatedTask) => {
@@ -24,6 +24,16 @@ const TodoList = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const toggleCompletion = id => {
+    const updatedTodo = todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+    setTodos(updatedTodo);
+  };
+
   return (
     <div>
       <h1>TodoList!</h1>
@@ -34,6 +44,7 @@ const TodoList = () => {
             key={todo.id}
             updateTodo={updateTodo}
             removeTodo={removeTodo}
+            toggleCompletion={toggleCompletion}
             todo={todo}
           />
         ))}
