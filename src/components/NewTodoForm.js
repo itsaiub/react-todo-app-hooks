@@ -10,7 +10,7 @@ const NewTodoForm = ({ createTodo }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-newForm" onSubmit={handleSubmit}>
       <label htmlFor="task">New Todo</label>
       <input
         id="task"
@@ -19,7 +19,7 @@ const NewTodoForm = ({ createTodo }) => {
         value={task}
         onChange={e => setTask(e.target.value)}
       />
-      <button>Add Todo</button>
+      <button disabled={task === "" ? true : false}>Add Todo</button>
     </form>
   );
 };

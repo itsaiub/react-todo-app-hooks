@@ -21,8 +21,8 @@ const Todo = ({ updateTodo, removeTodo, toggleCompletion, todo }) => {
   let result;
   if (isEditing) {
     result = (
-      <div>
-        <form onSubmit={handleUpdate}>
+      <div className="todo">
+        <form className="todo-editForm" onSubmit={handleUpdate}>
           <input
             type="text"
             value={task}
@@ -34,15 +34,21 @@ const Todo = ({ updateTodo, removeTodo, toggleCompletion, todo }) => {
     );
   } else {
     result = (
-      <div>
-        <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
-        <button onClick={handleRemoveTodo}>X</button>
+      <div className="todo">
         <li
           onClick={handleToggle}
-          className={todo.completed ? "completed" : ""}
+          className={todo.completed ? "todo-task completed" : "todo-task"}
         >
           {todo.task}
         </li>
+        <div className="todo-buttons">
+          <button onClick={() => setIsEditing(!isEditing)}>
+            <i className="fas fa-pen" />{" "}
+          </button>
+          <button onClick={handleRemoveTodo}>
+            <i className="fas fa-trash" />{" "}
+          </button>
+        </div>
       </div>
     );
   }

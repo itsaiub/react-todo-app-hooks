@@ -35,9 +35,10 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <h1>TodoList!</h1>
-      <NewTodoForm createTodo={createTodo} />
+    <div className="todoList">
+      <h1>
+        Todo List!<span>A Simple React Todo List</span>
+      </h1>
       <ul>
         {todos.map(todo => (
           <Todo
@@ -49,6 +50,7 @@ const TodoList = () => {
           />
         ))}
       </ul>
+      <NewTodoForm createTodo={createTodo} />
     </div>
   );
 };
